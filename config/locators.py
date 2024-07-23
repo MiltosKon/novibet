@@ -1,4 +1,3 @@
-from selenium.webdriver.common.by import By
 
 class BasePageLocators:
     setting_button = ('xpath', '//cm-icon[contains(@class,"Settings")]')
