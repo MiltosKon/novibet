@@ -13,7 +13,7 @@ class LiveProgramPage(BasePage):
         utils.find_element_by(self.driver, self.page_locators.event_type_dropdown).click()
         utils.find_element_by(self.driver, self.page_locators.event_type_soccer).click()
 
-    def _convert_to_gmt2(self, time_str):
+    def _parse_and_convert_time(self, time_str):
 
         if 'in' in time_str:
             time_parts = time_str.split()
@@ -27,7 +27,7 @@ class LiveProgramPage(BasePage):
                 parsed_time = datetime.strptime(time_str, "%H:%M")
 
             parsed_time = parsed_time.replace(year=self.current_gmt2_time.year, month=self.current_gmt2_time.month, day=self.current_gmt2_time.day)
-            converted_time = parsed_time + timedelta(hours=3)  # convert to GMT+2
+            converted_time = parsed_time
         else:
             raise ValueError(f"Unsupported time format: {time_str}")
 
@@ -44,7 +44,7 @@ class LiveProgramPage(BasePage):
         schedule = []
         for time_element, name_element in zip(time_elements, name_elements):
             name = name_element.text.replace('\n', ' vs ')
-            startTime = self._convert_to_gmt2(time_element.text)
+            startTime = self._parse_and_convert_time(time_element.text)
 
             schedule.append({"name": name,"startTime": startTime,"status": "not_started"})
 
