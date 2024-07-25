@@ -1,11 +1,15 @@
 import utils
 from config.locators import  BasePageLocators
+from datetime import datetime as dt
+from datetime import timedelta as td
 
 class BasePage:
 
     page_locators = BasePageLocators()
+
     def __init__(self, driver):
         self.driver = driver
+        self.now = dt.utcnow() + td(hours=3)
 
     def _handle_newsletter_popup(self):
         try:
