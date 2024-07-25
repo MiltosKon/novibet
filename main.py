@@ -1,4 +1,5 @@
 import time
+import traceback
 from config.urls import Urls as urls
 from create_XML_report import ReportGeneratorXML
 from pages.live_program_page import LiveProgramPage
@@ -24,7 +25,8 @@ def main():
         report_generator = ReportGeneratorXML()
         report_generator.create_report()
     except Exception as e:
-        print(e)
+        print(f'Message: {e}')
+        print(traceback.print_exc() )
         print('[FAIL] see screenshot for details')
         driver.get_screenshot_as_file(f"./data/screenshot_{time.strftime('%H.%M', time.localtime())}.png")
     finally:
