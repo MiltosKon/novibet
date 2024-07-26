@@ -28,7 +28,7 @@ def main():
         print(f'Message: {e}')
         traceback.print_exc()
         print('[FAIL] see screenshot for details')
-        driver.get_screenshot_as_file(f"./data/screenshot_{time.strftime('%H.%M', time.localtime())}.png")
+        driver.get_screenshot_as_file(f"./data/screenshot.png")
     finally:
         driver.quit()
         exec_time = time.time() - st
