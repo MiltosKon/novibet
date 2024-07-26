@@ -1,6 +1,4 @@
 
-# Project Name
-
 ## Description
 This project first scrapes soccer match information, including team names and start times, from the live schedule page. It then checks the live betting page to ensure that these matches appear on time.
 
