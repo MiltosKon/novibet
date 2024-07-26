@@ -6,10 +6,9 @@ This project first scrapes soccer match information, including team names and st
 Step-by-step instructions to install your project. Include any prerequisites, such as software or libraries, and any environment setup required.
 
 ```bash
-# Example for a Python project
 git clone https://github.com/MiltosKon/novibet.git
 cd novibet
-python m venv .venv #otional 
+python m venv .venv #optional 
 pip install -r requirements.txt
 ```
 
