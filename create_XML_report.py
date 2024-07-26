@@ -7,12 +7,11 @@ class ReportGeneratorXML:
         self.xml_file_path = './data/status_report.xml'
 
     def filter_delayed_or_dropped_matches(self, events):
-        self.filtered_matches = \
-            [target_event for target_event in events if target_event["status"] in ["delayed", "dropped"]]
+        return [target_event for target_event in events if target_event["status"] in ["delayed", "dropped"]]
 
-    def generate_xml_report(self):
+    def generate_xml_report(self, events):
         root = ET.Element("matches")
-        for match in self.filtered_matches:
+        for match in events:
             match_element = ET.SubElement(root, "event")
             ET.SubElement(match_element, "name").text = match["name"]
             ET.SubElement(match_element, "status").text = match["status"]
@@ -26,5 +25,5 @@ class ReportGeneratorXML:
 
     def create_report(self):
         events = utils.load_events_from_json()
-        self.filter_delayed_or_dropped_matches(events)
-        self.generate_xml_report()
+        filtered_events = self.filter_delayed_or_dropped_matches(events)
+        self.generate_xml_report(filtered_events)
