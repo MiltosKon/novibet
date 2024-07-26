@@ -60,7 +60,7 @@ def load_events_from_json():
             return json.load(f)
 
     else:
-        print("No events file found")
+        logging.info("No events file found")
 
 def remove_displayed_events_from_json( ):
     file_path = './data/events.json'
@@ -69,11 +69,6 @@ def remove_displayed_events_from_json( ):
         events = json.load(file)
 
     filtered_events = [event for event in events if event['status'] != "is_displayed"]
-    displayed_events = [event for event in events if event['status'] == "is_displayed"]
-    if len(displayed_events) !=0:
-        for displayed in displayed_events:
-            print(f'Displayed event removed: {displayed["name"]}')
-        print(f"Successfully removed displayed events")
 
     with open(file_path, 'w') as file:
         json.dump(filtered_events, file)
