@@ -8,7 +8,7 @@ Step-by-step instructions to install your project. Include any prerequisites, su
 ```bash
 git clone https://github.com/MiltosKon/novibet.git
 cd novibet
-python m venv .venv #optional 
+python -m venv .venv #optional 
 pip install -r requirements.txt
 ```
 
