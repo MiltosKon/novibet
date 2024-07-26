@@ -3,7 +3,6 @@
 This project first scrapes soccer match information, including team names and start times, from the live schedule page. It then checks the live betting page to ensure that these matches appear on time.
 
 ## Installation
-Step-by-step instructions to install your project. Include any prerequisites, such as software or libraries, and any environment setup required.
 
 ```bash
 git clone https://github.com/MiltosKon/novibet.git
