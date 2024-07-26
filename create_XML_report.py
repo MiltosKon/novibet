@@ -1,3 +1,4 @@
+import logging
 import xml.etree.ElementTree as ET
 import utils
 
@@ -21,7 +22,7 @@ class ReportGeneratorXML:
         with open(self.xml_file_path, 'w') as xml_file:
             xml_file.write(xml_data)
 
-        print("XML report created")
+        logging.info("XML report created")
 
     def create_report(self):
         events = utils.load_events_from_json()

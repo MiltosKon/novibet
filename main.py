@@ -1,5 +1,7 @@
 import time
+import logging
 import traceback
+import polling
 from config.urls import Urls as urls
 from create_XML_report import ReportGeneratorXML
 from pages.live_program_page import LiveProgramPage
@@ -29,7 +31,9 @@ def main():
         traceback.print_exc()
         print('[FAIL] see screenshot for details')
         driver.get_screenshot_as_file("./data/screenshot.png")
+        logging.error(f'Run failed because of:\n {traceback.print_exc()} \n  screenshot has been saved for review')
     finally:
+        logging.info(f"Execution time: {time.time() - st:.2f} seconds")
         driver.quit()
         exec_time = time.time() - st
         print(f"Execution time: {exec_time:.2f} seconds")

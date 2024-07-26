@@ -1,14 +1,18 @@
 import json
 import os
+import logging
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common import NoSuchElementException
 
-def find_element_by(context, locator, timeout=20):
+# show info logs on terminal
+logging.basicConfig(level=logging.INFO, format='[%(levelname)s] %(message)s', handlers=[logging.StreamHandler()])
+
+def find_element_by(context, locator, timeout=5):
     strategy, locator_value = locator
     return WebDriverWait(context, timeout).until(EC.presence_of_element_located((strategy, locator_value)))
 
-def find_elements_by(context, locator, timeout=10):
+def find_elements_by(context, locator, timeout=5):
     strategy, locator_value = locator
     return WebDriverWait(context, timeout).until(EC.presence_of_all_elements_located((strategy, locator_value)))
 def element_exists(context, locator):
@@ -19,13 +23,13 @@ def element_exists(context, locator):
     except NoSuchElementException:
         return False
 
-def wait_url_to_contain(context, expected_url_part, timeout=10):
+def wait_url_to_contain(context, expected_url_part, timeout=5):
     WebDriverWait(context, timeout).until(EC.url_contains(expected_url_part))
 
 def save_events_to_json(events):
     with open('.\data\events.json', 'w') as f:
         json.dump(events, f)
-    print('Saved events to events.json')
+    logging.info('Saved events to events.json')
 
 def save_scheduled_events_to_json(events):
 
@@ -37,7 +41,7 @@ def save_scheduled_events_to_json(events):
         existing_event_names = {event['name'] for event in existing_events}
         new_events = [event for event in events if event['name'] not in existing_event_names]
         if new_events:
-            print('New events logged')
+            logging.info('New events logged')
 
         merged_events = existing_events + new_events
 
