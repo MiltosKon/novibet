@@ -20,6 +20,7 @@ def main():
 
         driver.get(urls.betting_live_url)
         betting_live_page_instance = BettingLivePage(driver)
+        betting_live_page_instance.change_language("English")
         betting_live_page_instance.check_if_displayed()
 
         report_generator = ReportGeneratorXML()
